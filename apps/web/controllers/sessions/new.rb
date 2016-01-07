@@ -1,4 +1,4 @@
-module Web::Controllers::Teams
+module Web::Controllers::Sessions
   class New
     include Web::Action
 

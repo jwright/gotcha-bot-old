@@ -1,4 +1,4 @@
-module Web::Views::Teams
+module Web::Views::Sessions
   class New
     include Web::View
   end
