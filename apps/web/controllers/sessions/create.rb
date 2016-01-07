@@ -24,6 +24,9 @@ module Web::Controllers::Sessions
         user_id: user_info["id"],
         team_id: team.id
       player = PlayerRepository.create player
+      auto_login player
+
+      redirect_to routes.bots_ready_path
     end
 
     private

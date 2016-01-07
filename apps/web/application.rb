@@ -19,6 +19,7 @@ module Web
       # When you add new directories, remember to add them here.
       #
       load_paths << [
+        'helpers',
         'controllers',
         'views'
       ]
@@ -190,8 +191,7 @@ module Web
       #
       # See: http://www.rubydoc.info/gems/lotus-controller#Configuration
       controller.prepare do
-        # include MyAuthentication # included in all the actions
-        # before :authenticate!    # run an authentication before callback
+        include Web::Helpers::Authentication
       end
 
       # Configure the code that will yield each time Web::View is included
