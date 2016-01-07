@@ -82,7 +82,8 @@ module Web
       #
       # middleware.use Rack::Protection
       middleware.use OmniAuth::Builder do
-        provider :slack, ENV["SLACK_KEY"], ENV["SLACK_SECRET"], scope: "bot"
+        provider :slack, ENV["SLACK_KEY"], ENV["SLACK_SECRET"],
+          scope: "bot,team:read,users:read"
       end
 
       # Default format for the requests that don't specify an HTTP_ACCEPT header
