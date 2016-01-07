@@ -1,5 +1,8 @@
 require 'lotus/helpers'
 
+require "omniauth"
+require "omniauth-slack"
+
 module Web
   class Application < Lotus::Application
     configure do
@@ -73,11 +76,14 @@ module Web
       #
       # See: http://www.rubydoc.info/gems/rack/Rack/Session/Cookie
       #
-      # sessions :cookie, secret: ENV['WEB_SESSIONS_SECRET']
+      sessions :cookie, secret: ENV['WEB_SESSIONS_SECRET']
 
       # Configure Rack middleware for this application
       #
       # middleware.use Rack::Protection
+      middleware.use OmniAuth::Builder do
+        provider :slack, ENV["SLACK_KEY"], ENV["SLACK_SECRET"], scope: "bot"
+      end
 
       # Default format for the requests that don't specify an HTTP_ACCEPT header
       # Argument: A symbol representation of a mime type, default to :html
